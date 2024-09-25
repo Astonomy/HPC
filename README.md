@@ -14,6 +14,7 @@ Usage:write a xxx.slurm-->sbatch xxx.slurm
 Following is an example for slurm script:
 
 '''shell
+
 #!/bin/bash                     \\shell file head
 
 #SBATCH --job-name=hello_world  \\the name of the job you submitted
@@ -31,4 +32,5 @@ module load gcc
 
 export OMP_NUM_THREADS=8
 ./hello_world                   \\file on login node will be uploaded automatically
+
 '''
