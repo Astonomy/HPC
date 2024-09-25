@@ -1,5 +1,6 @@
 # A HPC learner's notes
-Platform Used: arm128c256g
+## Platform Used
+arm128c256g
 
 ## Structure
 local-->login nodes-->computing nodes
