@@ -40,7 +40,7 @@ export OMP_NUM_THREADS=8
 
 ### Use ```sinfo``` to view the status of a cluster
 Usage:
-```shell
+```
 
 $ sinfo -N                   \\view information about nodes
 $ sinfo -N --states=idle     \\view free node
