@@ -13,7 +13,7 @@ Usage:write a xxx.slurm-->sbatch xxx.slurm
 
 Following is an example for slurm script:
 
-'''shell
+```shell
 
 #!/bin/bash                     \\shell file head
 
@@ -42,4 +42,4 @@ export OMP_NUM_THREADS=8
 
 ./hello_world                   \\file on login node will be uploaded automatically
 
-'''
+```
