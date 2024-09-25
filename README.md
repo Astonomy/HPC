@@ -32,6 +32,6 @@ ulimit -s unlimited             \\set the limit of stack to unlimited
 module load gcc
 
 export OMP_NUM_THREADS=8
-./hello_world                   \\file on login node will be uploaded automatically
+./hello-xflops                   \\file on login node will be uploaded automatically
 
 ```
