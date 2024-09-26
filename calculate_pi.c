@@ -17,12 +17,18 @@ void single_task()
 
 int main()
 {
+    clock_t start_t,finish_t;
+    double total_t = 0 ;
     srand((unsigned)time(NULL));
+    start_t = clock();
     #pragma omp parallel for schedule(static,4)
-    for (  int p = 0 ; p < 1000000 ; p ++)
+    for (  int p = 0 ; p < 10000 ; p ++)
     {
         single_task();
     }
-    printf("pi=%.6f", 4*i/s);
+    finish_t = clock();
+    total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
+    printf("time=%.6f\n",total_t);
+    printf("pi=%.6f\n", 4*i/s);
     return 0;
 }
