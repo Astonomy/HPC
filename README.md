@@ -48,3 +48,5 @@ $ sinfo --partition=cpu      \\view information of cpu queue
 $ sinfo --help               \\view all command lines and learn freely!
 
 ```
+
+## Coding with OpenMP
