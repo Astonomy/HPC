@@ -50,3 +50,20 @@ $ sinfo --help               \\view all command lines and learn freely!
 ```
 
 ## Coding with OpenMP
+### Basic
+use ```#pragma omp parallel``` to start a multiprocessing part
+
+### Vars
+private and public:
+
+vars defined out of the multiprocessing part is public, while in the part is private
+
+use ```#pragma omp parallel private(private_vars)``` to turn public vars into private
+### Cycle and Allocate schedule
+```C
+#pragma omp parallel schedule(static,3) \\static schedule for example
+for ()
+{
+    \\the job you want to do
+}
+```
