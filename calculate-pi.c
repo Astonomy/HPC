@@ -1,47 +1,29 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include <omp.h>
-# include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <omp.h>
 
-double i = 0;
-double s = 0;
-double sum = 0;
-
-void single_task()
-{
-    double a = ((double)rand()/RAND_MAX)*(1-0) + 0;
-    double b = ((double)rand()/RAND_MAX)*(1-0) + 0;
-    if ( a*a + b*b < 1)
-        i = i + 1;
-    s = s + 1;
+// Function to generate random number between a and b
+double random_double(int a, int b) {
+    return a + ((double)rand() / (RAND_MAX)) * (b - a);
 }
 
-void single()
-{
-//    clock_t start_t,finish_t;
-//    double total_t = 0 ;
-    srand((unsigned)time(NULL));
-//    start_t = clock();
-    #pragma omp parallel for schedule(static,4)
-    for (  int p = 0 ; p < 10000000 ; p ++)
-    {
-        single_task();
-    }
-//    finish_t = clock();
-//    total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
-//    printf("time=%.6f\n",total_t);
-//    printf("%.20f\n", 4*i/s);
-}
+int main(void) {
+   int i;
+   int total_points = 100000000;
+   int circle_points = 0;
+   srand((unsigned int) time(0));  // Initialization, should only be called once.
 
-int main()
-{
-    for(int time;time < 10;time ++)
-    {
-        single();
-        sum = sum + 4*i/s;
-        i = 0;
-        s = 0;
-    }
-    printf("pi on average is %.20f\n", sum/10);
-    return 0;
-}
+#pragma omp parallel for reduction(+:circle_points)
+   for (i=0; i<total_points; ++i){
+      double x = random_double(-1.0, 1.0);  // Random x coordinate
+      double y = random_double(-1.0, 1.0);  // Random y coordinate
+      if(x*x + y*y <= 1) {                 // If point is in the unit circle
+         circle_points++;                   // Increment count of points in circle
+      }
+   }
+
+   double pi = 4.0 * (double)circle_points / total_points;  // Calculate Pi
+   printf("Pi is approximately %f\n", pi); // Print the calculated value of Pi
+   return 0;
+ }
